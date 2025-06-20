@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextStep</title>
+
+  {# load main stylesheet #}
+  <link rel="stylesheet" href="{{ vite_asset('style.css') }}">
+
+  {# block for additional header scripts and styles #}
+  {% block header_scripts %}{% endblock %}
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+
+  {# load vite client, for hot module reloading #}
+  {% if is_development() %}
+  <script type="module" src="{{ vite_dev_url }}/@vite/client"></script>
+  {% endif %}
+
+  {# load main script #}
+  <script src="{{ vite_asset('main.ts') }}"></script>
+
+  {# block for additional footer scripts #}
+  {% block footer_scripts %}{% endblock %}
+
+</body>
+
+</html>
