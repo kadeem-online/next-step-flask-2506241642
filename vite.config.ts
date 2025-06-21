@@ -1,5 +1,6 @@
 import path from "path";
 import { defineConfig, loadEnv, type UserConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig(({ mode }): UserConfig => {
 	const env = loadEnv(mode, process.cwd(), "");
@@ -25,6 +26,7 @@ export default defineConfig(({ mode }): UserConfig => {
 			port: 5173,
 			strictPort: true,
 		},
+		plugins: [tailwindcss()],
 	};
 
 	return config;
