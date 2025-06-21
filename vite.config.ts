@@ -16,7 +16,7 @@ export default defineConfig(({ mode }): UserConfig => {
 			rollupOptions: {
 				input: {
 					main: path.resolve(__dirname, `src/main.ts`),
-					style: path.resolve(__dirname, `src/style.css`),
+					style: path.resolve(__dirname, `src/styles.css`),
 				},
 			},
 			chunkSizeWarningLimit: 500,
