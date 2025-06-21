@@ -1,2 +1,34 @@
 @import "tailwindcss";
 @source "../app/templates";
+
+@theme {
+	--ns-color-primary: var(--color-blue-500);
+	--ns-color-primary-hover: var(--color-blue-600);
+	--ns-color-accent: var(--color-green-500);
+	--ns-color-background: var(--color-gray-50);
+	--ns-color-surface: var(--color-white);
+	--ns-color-text: var(--color-gray-900);
+	--ns-color-text-muted: var(--color-gray-500);
+	--ns-color-border: var(--color-gray-200);
+	--ns-color-danger: var(--color-red-500);
+
+	--ns-font-poppins: "Poppins", sans-serif;
+	--ns-font-inter: "Inter", sans-serif;
+}
+
+@layer base {
+	/* body */
+	body {
+		background-color: var(--ns-color-background);
+		color: var(--ns-color-text);
+		font: var(--ns-font-inter);
+	}
+
+	/* Headers */
+	h1,
+	h2,
+	h3 {
+		font-family: var(--ns-font-poppins);
+		color: var(--ns-color-text-muted);
+	}
+}
