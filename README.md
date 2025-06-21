@@ -15,3 +15,9 @@ $ flask run
 ```
 
 This will launch the main application instance and serve the task manager at [http://localhost:5000](http://localhost:5000)
+
+```
+$ npm run dev
+```
+
+To run the Vite development server to preview changes to JavaScript and CSS during development. By default uses port `5173` of localhost.
