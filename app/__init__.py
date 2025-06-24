@@ -19,9 +19,14 @@ logging.basicConfig(
 )
 
 
-def create_app():
+def create_app(is_test=False, custom_config=None):
     """
     Generates the main application instance.
+
+    Args:
+        is_test (bool): Flag to indicate if the application is in test mode.
+        custom_config (dict): Custom configuration settings for the application.
+            These settings will override the default configuration.
     """
     # Load environment variables from .env file
     load_dotenv()
@@ -44,6 +49,25 @@ def create_app():
 
     # log application startup
     app.logger.info('Starting application...')
+
+    # Load the default configuration
+    app.config.from_object('app.config.AppConfiguration')
+
+    # Load mode specific configuration
+    if is_test:
+        app.config.from_object('app.config.TestingConfiguration')
+    elif is_development():
+        app.config.from_object('app.config.DevelopmentConfiguration')
+    else:
+        app.config.from_object('app.config.ProductionConfiguration')
+
+    # Load custom configurations if provided
+    try:
+        if custom_config:
+            app.config.update(custom_config)
+    except Exception as e:
+        app.logger.error(f"Error loading custom configuration: {e}")
+        raise e
 
     # create vite asset helper
     def vite_asset(filename):
