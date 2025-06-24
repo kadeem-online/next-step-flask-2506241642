@@ -1,6 +1,7 @@
 # standard library imports
 import json
 import logging
+import os
 
 # third party imports
 from dotenv import load_dotenv
@@ -50,6 +51,9 @@ def create_app(is_test=False, custom_config=None):
 
     # log application startup
     app.logger.info('Starting application...')
+
+    # Create the instance folder if it does not exist
+    os.makedirs(app.instance_path, exist_ok=True)
 
     # Load the default configuration
     app.config.from_object('app.config.AppConfiguration')
