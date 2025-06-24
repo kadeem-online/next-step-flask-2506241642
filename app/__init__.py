@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from flask import (Flask, render_template, url_for)
 
 # local imports
+import app.extensions as Extensions
 from app.utilities.functions import (is_development)
 
 
@@ -68,6 +69,10 @@ def create_app(is_test=False, custom_config=None):
     except Exception as e:
         app.logger.error(f"Error loading custom configuration: {e}")
         raise e
+
+    # initialize extensions
+    Extensions.db.init_app(app)
+    Extensions.migrate.init_app(app, Extensions.db)
 
     # create vite asset helper
     def vite_asset(filename):
